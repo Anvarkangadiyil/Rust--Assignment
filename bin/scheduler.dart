@@ -1,26 +1,22 @@
 import 'dart:async';
 import 'dart:io';
 
-class Scheduler {
-  final _hour, _minutes, _seconds;
-
-  Scheduler(this._hour, this._minutes, this._seconds) {
-    var datenow = DateTime.now();
-    print('\nthe task is scheduled at time :: $datenow\n');
-    task();
-  }
-
-  Future<void> task() async {
-    await Future.delayed(
-        Duration(hours: _hour, minutes: _minutes, seconds: _seconds));
-    print('executing task ....\n');
-    var timeTaken = DateTime.now();
-    print('task is finished at time :: $timeTaken\n');
-  }
+void main() async {
+  await task(hours: 0, minutes: 0, seconds: 13, discreption: "display");
 }
 
-void main() async {
-  var hour = 0, minute = 0, seocond = 0;
-  final task1 = Scheduler(0, 0, 5);
-  await task1.task();
+Future<void> task({
+  required hours,
+  required minutes,
+  required seconds,
+  String? discreption,
+}) async {
+  final timeNow = DateTime.now();
+  print("the tasks is initiated at time :: $timeNow");
+  await Future.delayed(
+    Duration(hours: hours, minutes: minutes, seconds: seconds),
+  );
+  print('executing task named $discreption ....\n');
+  var timeTaken = DateTime.now();
+  print('task is finished at time :: $timeTaken\n');
 }
